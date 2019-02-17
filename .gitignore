@@ -3,6 +3,7 @@
 cache/*
 cache.db*
 config.ini*
+runtime/
 Logs/*
 sickbeard.db*
 autoProcessTV/autoProcessTV.cfg
@@ -42,8 +43,7 @@ ehthumbs.db
 Thumbs.db
 .directory
 *~
-*.pyproj
-*.sln
 ._.DS_Store
 .vs
+*.user
 

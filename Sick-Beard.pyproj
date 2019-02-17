@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{d7827379-a164-4c55-b22b-559ace6b6d07}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>SickBeard.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>Global|PythonCore|2.7</InterpreterId>
+    <IsWindowsApplication>True</IsWindowsApplication>
+    <CommandLineArguments>--datadir=.\runtime --config=.\runtime\config.ini</CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <PublishUrl>.\dist</PublishUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="COPYING.txt" />
+    <Content Include="data\**" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="**\*.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|2.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="autoProcessTV\" />
+    <Folder Include="data\" />
+    <Folder Include="data\css\" />
+    <Folder Include="data\css\lib\" />
+    <Folder Include="data\css\lib\images\" />
+    <Folder Include="data\css\mitm\" />
+    <Folder Include="data\css\mitm\fonts\" />
+    <Folder Include="data\images\" />
+    <Folder Include="data\images\flags\" />
+    <Folder Include="data\images\ico\" />
+    <Folder Include="data\images\menu\" />
+    <Folder Include="data\images\notifiers\" />
+    <Folder Include="data\images\paypal\" />
+    <Folder Include="data\images\providers\" />
+    <Folder Include="data\interfaces\" />
+    <Folder Include="data\interfaces\default\" />
+    <Folder Include="data\js\" />
+    <Folder Include="data\js\lib\" />
+    <Folder Include="data\js\mitm\" />
+    <Folder Include="lib\" />
+    <Folder Include="lib\babelfish\" />
+    <Folder Include="lib\babelfish\converters\" />
+    <Folder Include="lib\babelfish\data\" />
+    <Folder Include="lib\bencode\" />
+    <Folder Include="lib\bs4\" />
+    <Folder Include="lib\bs4\builder\" />
+    <Folder Include="lib\cfscrape\" />
+    <Folder Include="lib\chardet\" />
+    <Folder Include="lib\cherrypy\" />
+    <Folder Include="lib\cherrypy\lib\" />
+    <Folder Include="lib\cherrypy\process\" />
+    <Folder Include="lib\cherrypy\wsgiserver\" />
+    <Folder Include="lib\dateutil\" />
+    <Folder Include="lib\dateutil\zoneinfo\" />
+    <Folder Include="lib\enzyme\" />
+    <Folder Include="lib\growl\" />
+    <Folder Include="lib\guessit\" />
+    <Folder Include="lib\guessit\patterns\" />
+    <Folder Include="lib\guessit\plugins\" />
+    <Folder Include="lib\guessit\transfo\" />
+    <Folder Include="lib\hachoir_core\" />
+    <Folder Include="lib\hachoir_core\field\" />
+    <Folder Include="lib\hachoir_core\stream\" />
+    <Folder Include="lib\hachoir_metadata\" />
+    <Folder Include="lib\hachoir_metadata\qt\" />
+    <Folder Include="lib\hachoir_parser\" />
+    <Folder Include="lib\hachoir_parser\archive\" />
+    <Folder Include="lib\hachoir_parser\audio\" />
+    <Folder Include="lib\hachoir_parser\common\" />
+    <Folder Include="lib\hachoir_parser\container\" />
+    <Folder Include="lib\hachoir_parser\file_system\" />
+    <Folder Include="lib\hachoir_parser\game\" />
+    <Folder Include="lib\hachoir_parser\image\" />
+    <Folder Include="lib\hachoir_parser\misc\" />
+    <Folder Include="lib\hachoir_parser\network\" />
+    <Folder Include="lib\hachoir_parser\program\" />
+    <Folder Include="lib\hachoir_parser\video\" />
+    <Folder Include="lib\html5lib\" />
+    <Folder Include="lib\html5lib\filters\" />
+    <Folder Include="lib\html5lib\serializer\" />
+    <Folder Include="lib\html5lib\treebuilders\" />
+    <Folder Include="lib\html5lib\treewalkers\" />
+    <Folder Include="lib\httplib2\" />
+    <Folder Include="lib\js2py\" />
+    <Folder Include="lib\js2py\constructors\" />
+    <Folder Include="lib\js2py\host\" />
+    <Folder Include="lib\js2py\prototypes\" />
+    <Folder Include="lib\js2py\translators\" />
+    <Folder Include="lib\js2py\utils\" />
+    <Folder Include="lib\jsonrpclib\" />
+    <Folder Include="lib\oauth2\" />
+    <Folder Include="lib\pyjsparser\" />
+    <Folder Include="lib\pynma\" />
+    <Folder Include="lib\pysrt\" />
+    <Folder Include="lib\pythontwitter\" />
+    <Folder Include="lib\python_anticaptcha\" />
+    <Folder Include="lib\pytz\" />
+    <Folder Include="lib\pytz\tests\" />
+    <Folder Include="lib\requests\" />
+    <Folder Include="lib\requests\packages\" />
+    <Folder Include="lib\requests\packages\chardet2\" />
+    <Folder Include="lib\requests\packages\chardet\" />
+    <Folder Include="lib\requests\packages\idna\" />
+    <Folder Include="lib\requests\packages\oauthlib\" />
+    <Folder Include="lib\requests\packages\oauthlib\oauth1\" />
+    <Folder Include="lib\requests\packages\oauthlib\oauth1\rfc5849\" />
+    <Folder Include="lib\requests\packages\oauthlib\oauth2\" />
+    <Folder Include="lib\requests\packages\oauthlib\oauth2\draft25\" />
+    <Folder Include="lib\requests\packages\urllib3\" />
+    <Folder Include="lib\requests\packages\urllib3\contrib\" />
+    <Folder Include="lib\requests\packages\urllib3\packages\" />
+    <Folder Include="lib\requests\packages\urllib3\packages\backports\" />
+    <Folder Include="lib\requests\packages\urllib3\packages\ssl_match_hostname\" />
+    <Folder Include="lib\requests\packages\urllib3\util\" />
+    <Folder Include="lib\simplejson\" />
+    <Folder Include="lib\socks\" />
+    <Folder Include="lib\stevedore\" />
+    <Folder Include="lib\subliminal\" />
+    <Folder Include="lib\subliminal\converters\" />
+    <Folder Include="lib\subliminal\providers\" />
+    <Folder Include="lib\transmissionrpc\" />
+    <Folder Include="lib\tvdb_api\" />
+    <Folder Include="lib\tvdb_api\tests\" />
+    <Folder Include="lib\tzlocal\" />
+    <Folder Include="sickbeard\" />
+    <Folder Include="sickbeard\databases\" />
+    <Folder Include="sickbeard\downloaders\" />
+    <Folder Include="sickbeard\metadata\" />
+    <Folder Include="sickbeard\name_parser\" />
+    <Folder Include="sickbeard\notifiers\" />
+    <Folder Include="sickbeard\providers\" />
+    <Folder Include="tests\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
