@@ -4,8 +4,8 @@ FROM python:2.7
 COPY . /src/sickbeard
 
 WORKDIR /src/sickbeard
-RUN rm -rf /src/sickbeard/docker
+RUN rm -rf /src/sickbeard/docker/data
 
 RUN pip install --no-cache-dir -r ./requirements.txt
 
-CMD [ "python", "./SickBeard.py", "--config=/src/sickbeard/runtime/config.ini", "--datadir=/src/sickbeard/runtime", "--addr=0.0.0.0"]
+CMD [ "python", "./SickBeard.py", "--config=/src/sickbeard/runtime/config.ini", "--datadir=/src/sickbeard/runtime", "--addr=0.0.0.0", "--nolaunch"]
