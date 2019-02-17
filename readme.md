@@ -3,11 +3,15 @@ Sick Beard
 
 *Sick Beard is currently an alpha release. There may be severe bugs in it and at any given time it may not work at all.*
 
-Sick Beard is a PVR for newsgroup users (with limited torrent support). It watches for new episodes of your favorite shows and when they are posted it downloads them, sorts and renames them, and optionally generates metadata for them. It currently supports several torrent and usenet sites and retrieves show information from theTVDB.com and TVRage.com.
+[Read the wiki][wiki] to know the easiest way to run this project.   
+
+Sick-Beard is a PVR & episode guide that downloads and manages all your TV shows. You must have rights to the TV Shows being downloaded. 
+
+**Always observe network regulations and laws in your country.**
 
 Features include:
 
-* automatically retrieves new episode torrent or nzb files
+* automatically retrieves new episodes from torrent or nzb files
 * can scan your existing library and then download any old seasons or episodes you're missing
 * can watch for better versions and upgrade your existing episodes (to from TV DVD/BluRay for example)
 * XBMC library updates, poster/fanart downloads, and NFO/TBN generation
@@ -32,14 +36,12 @@ Sick Beard makes use of the following projects:
 * [python-dateutil][dateutil]
 * [jsonrpclib][jsonrpclib]
 
-## Dependencies
 
-To run Sick Beard from source you will need Python 2.5+ and Cheetah 2.1.0+.
-The [binary releases][githubdownloads] are standalone. Build 503 and older can be found on the now defunct [legacy releases][googledownloads].
+## Contribution and Bugs
 
-## Bugs
+If you find a bug please report it or it'll never get fixed. Verify that it hasn't [already been submitted][githubissues] and then [log a new bug][githubnewissue]. Be sure to provide as much information as possible.
 
-If you find a bug please report it or it'll never get fixed. Verify that it hasn't [already been submitted][googleissues] and then [log a new bug][googlenewissue]. Be sure to provide as much information as possible.
+If you want to contribute fork this project and open a Pull Request to `master` branch.
 
 [cherrypy]: http://www.cherrypy.org
 [cheetah]: http://www.cheetahtemplate.org/
@@ -52,7 +54,8 @@ If you find a bug please report it or it'll never get fixed. Verify that it hasn
 [socks]: http://code.google.com/p/socksipy-branch/
 [dateutil]: http://labix.org/python-dateutil
 [googledownloads]: http://code.google.com/p/sickbeard/downloads/list
-[googleissues]: http://code.google.com/p/sickbeard/issues/list
-[googlenewissue]: http://code.google.com/p/sickbeard/issues/entry
+[githubissues]: https://github.com/junalmeida/Sick-Beard/issues
+[githubnewissue]: https://github.com/junalmeida/Sick-Beard/issues/new
 [jsonrpclib]: https://github.com/joshmarshall/jsonrpclib
 [githubdownloads]: https://github.com/midgetspy/Sick-Beard/releases
+[wiki]: https://github.com/junalmeida/Sick-Beard/wiki
