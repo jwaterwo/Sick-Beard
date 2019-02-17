@@ -1532,15 +1532,6 @@ def save_config():
     new_config['GUI']['coming_eps_display_paused'] = int(COMING_EPS_DISPLAY_PAUSED)
     new_config['GUI']['coming_eps_sort'] = COMING_EPS_SORT
 
-    new_config['Slack'] = {}
-    new_config['Slack']['use_slack'] = int(USE_SLACK)
-    new_config['Slack']['slack_notify_onsnatch'] = int(SLACK_NOTIFY_ONSNATCH)
-    new_config['Slack']['slack_notify_ondownload'] = int(SLACK_NOTIFY_ONDOWNLOAD)
-    new_config['Slack']['slack_webhook_url'] = SLACK_WEBHOOK_URL
-    new_config['Slack']['slack_channel'] = SLACK_CHANNEL
-    new_config['Slack']['slack_bot_name'] = SLACK_BOT_NAME
-    new_config['Slack']['slack_icon_url'] = SLACK_ICON_URL
-
     new_config.write()
 
 

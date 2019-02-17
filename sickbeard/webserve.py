@@ -1285,7 +1285,6 @@ class ConfigNotifications:
                           use_boxcar2=None, boxcar2_notify_onsnatch=None, boxcar2_notify_ondownload=None, boxcar2_access_token=None, boxcar2_sound=None,
                           use_pushover=None, pushover_notify_onsnatch=None, pushover_notify_ondownload=None, pushover_userkey=None, pushover_priority=None,
                               pushover_device=None, pushover_sound=None, pushover_device_list=None,
-                          use_slack=None, slack_notify_onsnatch=None, slack_notify_ondownload=None, slack_webhook_url=None, slack_channel=None, slack_bot_name=None, slack_icon_url=None,
                           use_libnotify=None, libnotify_notify_onsnatch=None, libnotify_notify_ondownload=None,
                           use_nmj=None, nmj_host=None, nmj_database=None, nmj_mount=None,
                           use_synoindex=None, synoindex_notify_onsnatch=None, synoindex_notify_ondownload=None, synoindex_update_library=None,
