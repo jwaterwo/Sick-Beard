@@ -8,4 +8,4 @@ RUN Remove-Item -Recurse -Force C:\\src\\sickbeard\\docker
 
 RUN pip install --no-cache-dir -r .\\requirements.txt
 
-CMD [ "python", ".\\SickBeard.py", "--config=C:\\src\\sickbeard\\runtime\\config.ini", "--datadir=C:\\src\\sickbeard\\runtime"]
+CMD [ "python", ".\\SickBeard.py", "--config=C:\\src\\sickbeard\\runtime\\config.ini", "--datadir=C:\\src\\sickbeard\\runtime", "--addr=0.0.0.0"]

@@ -8,4 +8,4 @@ RUN rm -rf /src/sickbeard/docker
 
 RUN pip install --no-cache-dir -r ./requirements.txt
 
-CMD [ "python", "./SickBeard.py", "--config=/src/sickbeard/runtime/config.ini", "--datadir=/src/sickbeard/runtime"]
+CMD [ "python", "./SickBeard.py", "--config=/src/sickbeard/runtime/config.ini", "--datadir=/src/sickbeard/runtime", "--addr=0.0.0.0"]
