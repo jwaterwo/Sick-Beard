@@ -60,6 +60,7 @@ pushalot_notifier = pushalot.PushalotNotifier()
 pushbullet_notifier = pushbullet.PushbulletNotifier()
 slack_notifier = slack.SlackNotifier()
 # social
+slack_notifier = slack.SlackNotifier()
 twitter_notifier = tweet.TwitterNotifier()
 trakt_notifier = trakt.TraktNotifier()
 

@@ -170,7 +170,11 @@ BACKLOG_SEARCH_FREQUENCY = 21
 MIN_SEARCH_FREQUENCY = 10
 DEFAULT_SEARCH_FREQUENCY = 40
 
-EZTV = False
+POSTPROCESS_FREQUENCY = None
+MIN_POSTPROCESS_FREQUENCY = 5
+DEFAULT_POSTPROCESS_FREQUENCY = 10
+
+EZRSS = False
 
 HDBITS = False
 HDBITS_USERNAME = None
@@ -387,7 +391,7 @@ PUSHBULLET_DEVICE_IDEN = None
 USE_SLACK = False
 SLACK_NOTIFY_ONSNATCH = False
 SLACK_NOTIFY_ONDOWNLOAD = False
-SLACK_WEBHOOK_URL = None
+SLACK_ACCESS_TOKEN = None
 SLACK_CHANNEL = None
 SLACK_BOT_NAME = None
 SLACK_ICON_URL = None
@@ -446,6 +450,7 @@ def initialize(consoleLogging=True):
                 THEPIRATEBAY, THEPIRATEBAY_TRUSTED, THEPIRATEBAY_PROXY, THEPIRATEBAY_PROXY_URL, THEPIRATEBAY_URL_OVERRIDE, \
                 TVTORRENTS, TVTORRENTS_DIGEST, TVTORRENTS_HASH, BTN, BTN_API_KEY, TORRENT_DIR, USENET_RETENTION, SOCKET_TIMEOUT, \
                 SEARCH_FREQUENCY, DEFAULT_SEARCH_FREQUENCY, BACKLOG_SEARCH_FREQUENCY, \
+                POSTPROCESS_FREQUENCY, DEFAULT_POSTPROCESS_FREQUENCY, MIN_POSTPROCESS_FREQUENCY, \
                 QUALITY_DEFAULT, FLATTEN_FOLDERS_DEFAULT, STATUS_DEFAULT, \
                 GROWL_NOTIFY_ONSNATCH, GROWL_NOTIFY_ONDOWNLOAD, TWITTER_NOTIFY_ONSNATCH, TWITTER_NOTIFY_ONDOWNLOAD, \
                 USE_GROWL, GROWL_HOST, GROWL_PASSWORD, USE_PROWL, PROWL_NOTIFY_ONSNATCH, PROWL_NOTIFY_ONDOWNLOAD, PROWL_API, PROWL_PRIORITY, PROG_DIR, \
@@ -453,7 +458,7 @@ def initialize(consoleLogging=True):
                 USE_NMA, NMA_NOTIFY_ONSNATCH, NMA_NOTIFY_ONDOWNLOAD, NMA_API, NMA_PRIORITY, \
                 USE_PUSHALOT, PUSHALOT_NOTIFY_ONSNATCH, PUSHALOT_NOTIFY_ONDOWNLOAD, PUSHALOT_AUTHORIZATIONTOKEN, PUSHALOT_SILENT, PUSHALOT_IMPORTANT, \
                 USE_PUSHBULLET, PUSHBULLET_NOTIFY_ONSNATCH, PUSHBULLET_NOTIFY_ONDOWNLOAD, PUSHBULLET_ACCESS_TOKEN, PUSHBULLET_DEVICE_IDEN, \
-                USE_SLACK, SLACK_NOTIFY_ONSNATCH, SLACK_NOTIFY_ONDOWNLOAD, SLACK_WEBHOOK_URL, SLACK_CHANNEL, SLACK_BOT_NAME, SLACK_ICON_URL, \
+                USE_SLACK, SLACK_NOTIFY_ONSNATCH, SLACK_NOTIFY_ONDOWNLOAD, SLACK_ACCESS_TOKEN, SLACK_CHANNEL, SLACK_BOT_NAME, SLACK_ICON_URL, \
                 versionCheckScheduler, VERSION_NOTIFY, PROCESS_AUTOMATICALLY, \
                 KEEP_PROCESSED_DIR, TV_DOWNLOAD_DIR, TVDB_BASE_URL, MIN_SEARCH_FREQUENCY, \
                 showQueueScheduler, searchQueueScheduler, ROOT_DIRS, CACHE_DIR, ACTUAL_CACHE_DIR, TVDB_API_PARMS, \
@@ -585,7 +590,11 @@ def initialize(consoleLogging=True):
         SEARCH_FREQUENCY = check_setting_int(CFG, 'General', 'search_frequency', DEFAULT_SEARCH_FREQUENCY)
         if SEARCH_FREQUENCY < MIN_SEARCH_FREQUENCY:
             SEARCH_FREQUENCY = MIN_SEARCH_FREQUENCY
-
+        
+        POSTPROCESS_FREQUENCY = check_setting_int(CFG, 'General', 'postprocess_frequency', DEFAULT_POSTPROCESS_FREQUENCY)
+        if POSTPROCESS_FREQUENCY < MIN_POSTPROCESS_FREQUENCY:
+            POSTPROCESS_FREQUENCY = MIN_POSTPROCESS_FREQUENCY
+        
         TV_DOWNLOAD_DIR = check_setting_str(CFG, 'General', 'tv_download_dir', os.path.abspath(os.path.join("/", "downloads")))
         PROCESS_AUTOMATICALLY = check_setting_int(CFG, 'General', 'process_automatically', 0)
         RENAME_EPISODES = check_setting_int(CFG, 'General', 'rename_episodes', 1)
@@ -867,7 +876,7 @@ def initialize(consoleLogging=True):
         USE_SLACK = bool(check_setting_int(CFG, 'Slack', 'use_slack', 0))
         SLACK_NOTIFY_ONSNATCH = bool(check_setting_int(CFG, 'Slack', 'slack_notify_onsnatch', 0))
         SLACK_NOTIFY_ONDOWNLOAD = bool(check_setting_int(CFG, 'Slack', 'slack_notify_ondownload', 0))
-        SLACK_WEBHOOK_URL = check_setting_str(CFG, 'Slack', 'slack_webhook_url', '')
+        SLACK_ACCESS_TOKEN = check_setting_str(CFG, 'Slack', 'slack_access_token', '')
         SLACK_CHANNEL = check_setting_str(CFG, 'Slack', 'slack_channel', '')
         SLACK_BOT_NAME = check_setting_str(CFG, 'Slack', 'slack_bot_name', '')
         SLACK_ICON_URL = check_setting_str(CFG, 'Slack', 'slack_icon_url', '')
@@ -960,8 +969,8 @@ def initialize(consoleLogging=True):
 
         # processors
         autoPostProcesserScheduler = scheduler.Scheduler(autoPostProcesser.PostProcesser(),
-                                                     cycleTime=datetime.timedelta(minutes=10),
-                                                     threadName="POSTPROCESSER",
+                                                         cycleTime=datetime.timedelta(minutes=POSTPROCESS_FREQUENCY),
+                                                         threadName="POSTPROCESSER",
                                                          run_delay=datetime.timedelta(minutes=5)
                                                          )
 
@@ -1230,6 +1239,7 @@ def save_config():
     new_config['General']['torrent_method'] = TORRENT_METHOD
     new_config['General']['usenet_retention'] = int(USENET_RETENTION)
     new_config['General']['search_frequency'] = int(SEARCH_FREQUENCY)
+    new_config['General']['postprocess_frequency'] = int(POSTPROCESS_FREQUENCY)
     new_config['General']['download_propers'] = int(DOWNLOAD_PROPERS)
     new_config['General']['prefer_episode_releases'] = int(PREFER_EPISODE_RELEASES)
     new_config['General']['quality_default'] = int(QUALITY_DEFAULT)
@@ -1504,6 +1514,15 @@ def save_config():
     new_config['Pushbullet']['pushbullet_notify_ondownload'] = int(PUSHBULLET_NOTIFY_ONDOWNLOAD)
     new_config['Pushbullet']['pushbullet_access_token'] = PUSHBULLET_ACCESS_TOKEN
     new_config['Pushbullet']['pushbullet_device_iden'] = PUSHBULLET_DEVICE_IDEN
+
+    new_config['Slack'] = {}
+    new_config['Slack']['use_slack'] = int(USE_SLACK)
+    new_config['Slack']['slack_notify_onsnatch'] = int(SLACK_NOTIFY_ONSNATCH)
+    new_config['Slack']['slack_notify_ondownload'] = int(SLACK_NOTIFY_ONDOWNLOAD)
+    new_config['Slack']['slack_access_token'] = SLACK_ACCESS_TOKEN
+    new_config['Slack']['slack_channel'] = SLACK_CHANNEL
+    new_config['Slack']['slack_bot_name'] = SLACK_BOT_NAME
+    new_config['Slack']['slack_icon_url'] = SLACK_ICON_URL
 
     new_config['Newznab'] = {}
     new_config['Newznab']['newznab_data'] = NEWZNAB_DATA

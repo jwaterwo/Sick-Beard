@@ -25,26 +25,21 @@ from sickbeard import logger, common
 
 class SlackNotifier:
 
-    def _send_to_slack(self, message, webhookUrl, channel, bot_name, icon_url):
+    def _send_to_slack(self, message, accessToken, channel, bot_name, icon_url):
+        SLACK_ENDPOINT = "https://slack.com/api/chat.postMessage"
 
         data = {}
+        data["token"] = accessToken
         data["channel"] = channel
         data["username"] = bot_name
         data["text"] = message
         data["icon_url"] = icon_url
 
-        data = json.dumps(data)
-        req = urllib2.Request(webhookUrl, data, {'Content-Type': 'application/json'})
+        encoded_data = urllib.urlencode(data)
 
+        req = urllib2.Request(SLACK_ENDPOINT, encoded_data)
         urlResp = sickbeard.helpers.getURL(req)
-
         if urlResp:
-            # May not come back as JSON
-            if "ok" == urlResp:
-                logger.log(u"Slack: Succeeded sending message.", logger.MESSAGE)
-                return True
-
-            # Assume it's JSON
             resp = json.loads(urlResp)
         else:
             return False
@@ -59,13 +54,13 @@ class SlackNotifier:
         logger.log(u"Slack: Failed sending message: " + resp["error"], logger.ERROR)
         return False
 
-    def _notify(self, message, webhookUrl='', channel='', bot_name='', icon_url='', force=False):
+    def _notify(self, message, accessToken='', channel='', bot_name='', icon_url='', force=False):
         # suppress notifications if the notifier is disabled but the notify options are checked
         if not sickbeard.USE_SLACK and not force:
             return False
 
-        if not webhookUrl:
-            webhookUrl = sickbeard.SLACK_WEBHOOK_URL
+        if not accessToken:
+            accessToken = sickbeard.SLACK_ACCESS_TOKEN
         if not channel:
             channel = sickbeard.SLACK_CHANNEL
         if not bot_name:
@@ -73,7 +68,7 @@ class SlackNotifier:
         if not icon_url:
             icon_url = sickbeard.SLACK_ICON_URL
 
-        return self._send_to_slack(message, webhookUrl, channel, bot_name, icon_url)
+        return self._send_to_slack(message, accessToken, channel, bot_name, icon_url)
 
 ##############################################################################
 # Public functions
@@ -87,8 +82,8 @@ class SlackNotifier:
         if sickbeard.SLACK_NOTIFY_ONDOWNLOAD:
             self._notify(common.notifyStrings[common.NOTIFY_DOWNLOAD] + ': ' + ep_name)
 
-    def test_notify(self, webhookUrl, channel, bot_name, icon_url):
-        return self._notify("This is a test notification from Sick Beard", webhookUrl, channel, bot_name, icon_url, force=True)
+    def test_notify(self, accessToken, channel, bot_name, icon_url):
+        return self._notify("This is a test notification from Sick Beard", accessToken, channel, bot_name, icon_url, force=True)
 
     def update_library(self, ep_obj):
         pass
