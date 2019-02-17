@@ -5,6 +5,8 @@ services:
       context: .
       dockerfile: ./docker/linux/Dockerfile #Change this to windows in case of a windows container
     image: junalmeida/sickbeard
+
+    container_name: sickbeard
     restart: always
     volumes:
       - ./docker/data/:/src/sickbeard/runtime
