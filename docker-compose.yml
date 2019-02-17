@@ -1,7 +1,9 @@
 version: "3"
 services:
   sickbeard:
-    build: ./docker/linux #Change this to windows in case of a windows container
+    build: 
+      context: .
+      dockerfile: ./docker/linux/Dockerfile #Change this to windows in case of a windows container
     restart: always
     volumes:
       - ./cache:/src/sickbeard/cache
