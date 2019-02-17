@@ -534,7 +534,7 @@ def initialize(consoleLogging=True):
             logger.log(u"!!! Creating local cache dir failed, using system default", logger.ERROR)
             CACHE_DIR = None
 
-        ROOT_DIRS = check_setting_str(CFG, 'General', 'root_dirs', '')
+        ROOT_DIRS = check_setting_str(CFG, 'General', 'root_dirs', '0|' + os.path.abspath(os.path.join("/", "downloads")))
         if not re.match(r'\d+\|[^|]+(?:\|[^|]+)*', ROOT_DIRS):
             ROOT_DIRS = ''
 
@@ -586,7 +586,7 @@ def initialize(consoleLogging=True):
         if SEARCH_FREQUENCY < MIN_SEARCH_FREQUENCY:
             SEARCH_FREQUENCY = MIN_SEARCH_FREQUENCY
 
-        TV_DOWNLOAD_DIR = check_setting_str(CFG, 'General', 'tv_download_dir', '')
+        TV_DOWNLOAD_DIR = check_setting_str(CFG, 'General', 'tv_download_dir', os.path.abspath(os.path.join("/", "downloads")))
         PROCESS_AUTOMATICALLY = check_setting_int(CFG, 'General', 'process_automatically', 0)
         RENAME_EPISODES = check_setting_int(CFG, 'General', 'rename_episodes', 1)
         KEEP_PROCESSED_DIR = check_setting_int(CFG, 'General', 'keep_processed_dir', 1)
