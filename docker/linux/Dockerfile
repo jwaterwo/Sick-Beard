@@ -4,6 +4,7 @@ FROM python:2.7
 COPY . /src/sickbeard
 
 WORKDIR /src/sickbeard
+RUN rm -rf /src/sickbeard/docker
 
 RUN pip install --no-cache-dir -r ./requirements.txt
 

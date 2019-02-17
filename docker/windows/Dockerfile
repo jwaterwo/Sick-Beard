@@ -4,6 +4,7 @@ FROM python:2.7.15-windowsservercore-1709
 COPY . /src/sickbeard
 SHELL ["powershell.exe"]
 WORKDIR C:\\src\\sickbeard
+RUN Remove-Item -Recurse -Force C:\\src\\sickbeard\\docker
 
 RUN pip install --no-cache-dir -r .\\requirements.txt
 

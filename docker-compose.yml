@@ -11,4 +11,5 @@ services:
     volumes:
       - ./docker/data/:/src/sickbeard/runtime
     ports:
-      - "8081:8081" #You can redirect this to 80, or use a web server with ssl
+      - "8081:8081" 
+# You can redirect the web port to 80, or use a web server with ssl 
