@@ -7,4 +7,4 @@ WORKDIR /src/sickbeard
 
 RUN pip install --no-cache-dir -r ./requirements.txt
 
-CMD [ "python", "./SickBeard.py" ]
+CMD [ "python", "./SickBeard.py", "--config=/src/sickbeard/runtime/config.ini", "--datadir=/src/sickbeard/runtime"]

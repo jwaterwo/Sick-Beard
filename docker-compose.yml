@@ -6,9 +6,6 @@ services:
       dockerfile: ./docker/linux/Dockerfile #Change this to windows in case of a windows container
     restart: always
     volumes:
-      - ./docker/data/cache:/src/sickbeard/cache
-      - ./docker/data/logs:/src/sickbeard/Logs
-      - ./docker/data/sickbeard.db:/src/sickbeard/sickbeard.db
-      - ./docker/data/config.ini:/src/sickbeard/config.ini
+      - ./docker/data/:/src/sickbeard/runtime
     ports:
       - "8081:8081" #You can redirect this to 80, or use a web server with ssl
