@@ -534,7 +534,7 @@ def initialize(consoleLogging=True):
             logger.log(u"!!! Creating local cache dir failed, using system default", logger.ERROR)
             CACHE_DIR = None
 
-        ROOT_DIRS = check_setting_str(CFG, 'General', 'root_dirs', '0|' + os.path.abspath(os.path.join("/", "downloads")))
+        ROOT_DIRS = check_setting_str(CFG, 'General', 'root_dirs', '0|' + os.path.abspath(os.path.join("/", "tvshows")))
         if not re.match(r'\d+\|[^|]+(?:\|[^|]+)*', ROOT_DIRS):
             ROOT_DIRS = ''
 
