@@ -13,6 +13,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "linux", "linux", "{118F81F7-5227-4807-8CCD-70EA6BB5FE6F}"
 	ProjectSection(SolutionItems) = preProject
 		docker\linux\Dockerfile = docker\linux\Dockerfile
+		docker\linux\utserver.conf = docker\linux\utserver.conf
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "windows", "windows", "{F5CCD4A5-BBD6-4CFF-B8E6-9FACFE853E01}"
