@@ -25,6 +25,8 @@
   <ItemGroup>
     <Content Include="COPYING.txt" />
     <Content Include="data\**" />
+    <Content Include="docker-compose.yml" />
+    <Content Include="readme.md" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
