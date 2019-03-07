@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Sick-Beard", "Sick-Beard.pyproj", "{D7827379-A164-4C55-B22B-559ACE6B6D07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{1F27FBB9-E5BF-4C03-98EA-1B748D8978E5}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "linux", "linux", "{118F81F7-5227-4807-8CCD-70EA6BB5FE6F}"
+	ProjectSection(SolutionItems) = preProject
+		docker\linux\Dockerfile = docker\linux\Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "windows", "windows", "{F5CCD4A5-BBD6-4CFF-B8E6-9FACFE853E01}"
+	ProjectSection(SolutionItems) = preProject
+		docker\windows\Dockerfile = docker\windows\Dockerfile
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7827379-A164-4C55-B22B-559ACE6B6D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7827379-A164-4C55-B22B-559ACE6B6D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{118F81F7-5227-4807-8CCD-70EA6BB5FE6F} = {1F27FBB9-E5BF-4C03-98EA-1B748D8978E5}
+		{F5CCD4A5-BBD6-4CFF-B8E6-9FACFE853E01} = {1F27FBB9-E5BF-4C03-98EA-1B748D8978E5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1B37671-3EAA-43C8-B5AF-E8A01A52AE23}
+	EndGlobalSection
+EndGlobal

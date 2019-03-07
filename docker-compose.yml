@@ -1,0 +1,18 @@
+version: "3"
+services:
+  sickbeard:
+    build: 
+      context: .
+      dockerfile: ./docker/linux/Dockerfile #Change this to windows in case of a windows container
+    image: junalmeida/sickbeard
+
+    container_name: sickbeard
+    restart: always
+    volumes:
+      - ./docker/data/:/src/sickbeard/runtime
+      # Change the mappings below to the path of your downloads and tvshows. 
+      - ./docker/data/tvshows:/tvshows
+      - ./docker/data/downloads:/downloads
+    ports:
+      # You can redirect the web port to "80:8081", or use a web server with ssl
+      - "8081:8081" 
