@@ -16,3 +16,12 @@ services:
     ports:
       # You can redirect the web port to "80:8081", or use a web server with ssl
       - "8081:8081" 
+  utorrent:
+    image: ekho/utorrent
+    container_name: utorrent
+    restart: always
+    volumes:
+      - ./docker/data/downloads:/utorrent/data
+      - ./docker/linux/utserver.conf:/utorrent/utserver.conf
+    ports:
+      - "8082:8080"

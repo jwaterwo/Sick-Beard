@@ -575,9 +575,9 @@ def initialize(consoleLogging=True):
         if NZB_METHOD not in ('blackhole', 'sabnzbd', 'nzbget'):
             NZB_METHOD = 'blackhole'
         
-        TORRENT_METHOD = check_setting_str(CFG, 'General', 'torrent_method', 'blackhole')
+        TORRENT_METHOD = check_setting_str(CFG, 'General', 'torrent_method', 'utorrent')
         if TORRENT_METHOD not in ('blackhole', 'utorrent', 'transmission', 'downloadstation', 'deluge'):
-            TORRENT_METHOD = 'blackhole'
+            TORRENT_METHOD = 'utorrent'
         DOWNLOAD_PROPERS = bool(check_setting_int(CFG, 'General', 'download_propers', 1))
         PREFER_EPISODE_RELEASES = bool(check_setting_int(CFG, 'General', 'prefer_episode_releases', 0))
 
@@ -586,7 +586,7 @@ def initialize(consoleLogging=True):
         if SEARCH_FREQUENCY < MIN_SEARCH_FREQUENCY:
             SEARCH_FREQUENCY = MIN_SEARCH_FREQUENCY
 
-        TV_DOWNLOAD_DIR = check_setting_str(CFG, 'General', 'tv_download_dir', os.path.abspath(os.path.join("/", "downloads")))
+        TV_DOWNLOAD_DIR = check_setting_str(CFG, 'General', 'tv_download_dir', os.path.abspath(os.path.join("/", "downloads", "complete")))
         PROCESS_AUTOMATICALLY = check_setting_int(CFG, 'General', 'process_automatically', 0)
         RENAME_EPISODES = check_setting_int(CFG, 'General', 'rename_episodes', 1)
         KEEP_PROCESSED_DIR = check_setting_int(CFG, 'General', 'keep_processed_dir', 1)
@@ -686,7 +686,7 @@ def initialize(consoleLogging=True):
 
         CheckSection(CFG, 'Blackhole')
         NZB_DIR = check_setting_str(CFG, 'Blackhole', 'nzb_dir', '')
-        TORRENT_DIR = check_setting_str(CFG, 'Blackhole', 'torrent_dir', '')
+        TORRENT_DIR = check_setting_str(CFG, 'Blackhole', 'torrent_dir', os.path.abspath(os.path.join("/", "downloads", "torrents")))
 
         CheckSection(CFG, 'EZTV')
         EZTV = bool(check_setting_int(CFG, 'EZTV', 'eztv', 0))
@@ -728,10 +728,10 @@ def initialize(consoleLogging=True):
         NZBGET_CATEGORY = check_setting_str(CFG, 'NZBget', 'nzbget_category', 'tv')
         NZBGET_HOST = check_setting_str(CFG, 'NZBget', 'nzbget_host', '')
         
-        TORRENT_USERNAME = check_setting_str(CFG, 'TORRENT', 'torrent_username', '')
+        TORRENT_USERNAME = check_setting_str(CFG, 'TORRENT', 'torrent_username', 'admin')
         TORRENT_PASSWORD = check_setting_str(CFG, 'TORRENT', 'torrent_password', '')
-        TORRENT_LABEL = check_setting_str(CFG, 'TORRENT', 'torrent_label', '')
-        TORRENT_HOST = check_setting_str(CFG, 'TORRENT', 'torrent_host', '')
+        TORRENT_LABEL = check_setting_str(CFG, 'TORRENT', 'torrent_label', 'sickbeard')
+        TORRENT_HOST = check_setting_str(CFG, 'TORRENT', 'torrent_host', 'http://utorrent:8080/')
         TORRENT_PATH = check_setting_str(CFG, 'TORRENT', 'torrent_path', '')
         TORRENT_RATIO = check_setting_str(CFG, 'TORRENT', 'torrent_ratio', '')
         TORRENT_PAUSED = bool(check_setting_int(CFG, 'TORRENT', 'torrent_paused', 0))

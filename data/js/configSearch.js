@@ -5,11 +5,11 @@ $(document).ready(function()
 	{
 	    if ($('#use_torrents').prop('checked'))
 	    {
-		$('#no-torrents').show();
+		    $('#no-torrents').show();
 	    }
 	    else
 	    {
-		$('#no-torrents').hide();
+		    $('#no-torrents').hide();
 	    }
 	}
 	
@@ -45,11 +45,11 @@ $(document).ready(function()
     $.fn.torrent_method_handler = function()
     {
         var selectedProvider = $('#torrent_method :selected').val();
-	$('#torrent_label').hide();
-	$('#label_desc').hide();
+	    $('#torrent_label').hide();
+	    $('#label_desc').hide();
 	
         if (selectedProvider == "blackhole")
-	{
+	    {
             $('#t_blackhole_settings').show();
             $('#torrent_settings').hide();
         }
@@ -57,10 +57,8 @@ $(document).ready(function()
 	{
             $('#t_blackhole_settings').hide();
             $('#torrent_settings').show();
-            $('#torrent_directory').show();
-            $('#torrent_directory label').last().hide();
-            $('#torrent_directory .fileBrowser').hide();
-            $('#directory_desc').text('Torrent Label');
+            $('#torrent_directory').hide();
+            $('#torrent_label, #label_desc').show();
             $('#host_desc').text('uTorrent Host');
             $('#username_desc').text('uTorrent Username');
             $('#password_desc').text('uTorrent Password');

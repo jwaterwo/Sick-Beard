@@ -146,8 +146,8 @@ def sendTORRENT(torrent):
         
         ###################################################################################################
         
-        if torrent_hash and sickbeard.TORRENT_PATH:
-            torrent_label = sickbeard.TORRENT_PATH.replace("/", "_").replace("\\", "_")
+        if torrent_hash and sickbeard.TORRENT_LABEL:
+            torrent_label = sickbeard.TORRENT_LABEL.replace("/", "_").replace("\\", "_")
             params = {'token': auth, 'action': 'setprops', 'hash': torrent_hash, 's': 'label', 'v': torrent_label}
             _sendRequest(session,params,None,"Label")
             logger.log("[uTorrent] Label set to " + torrent_label + " for torrent with hash " + torrent_hash,logger.DEBUG)
