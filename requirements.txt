@@ -1,2 +1,3 @@
 cheetah
 pysqlite
+requests[security]
