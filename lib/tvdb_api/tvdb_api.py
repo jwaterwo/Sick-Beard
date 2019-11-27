@@ -627,7 +627,7 @@ class Tvdb:
             result = dict((k.tag.lower(), k.text) for k in series.getchildren())
             result['id'] = int(result['id'])
             result['lid'] = self.config['langabbv_to_id'][result['language']]
-            if 'aliasnames' in result:
+            if 'aliasnames' in result and result['aliasnames'] is not None:
                 result['aliasnames'] = result['aliasnames'].split("|")
             log().debug('Found series %(seriesname)s' % result)
             allSeries.append(result)
