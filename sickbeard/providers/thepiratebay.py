@@ -59,7 +59,12 @@ class ThePirateBayProvider(generic.TorrentProvider):
         self.url = 'http://thepiratebay.org/'
         self.searchurl =  self.url + 'search/%s/0/7/200'  # order by seed       
         self.re_title_url = '<td>.*?".*?/torrent/\d+/(?P<title>.*?)%s".*?<a href=".*?(?P<url>magnet.*?)%s".*?</td>'
- 
+        self.trusted = [
+            "trusted",
+            "vip",
+            "helpers",
+        ]
+
     ###################################################################################################
     def isEnabled(self):
         return sickbeard.THEPIRATEBAY
@@ -150,25 +155,49 @@ class ThePirateBayProvider(generic.TorrentProvider):
     ###################################################################################################
     def _doSearch(self, search_params, show=None):
         results = []
-        searchURL = self.proxy._buildURL(self.searchurl %(urllib.quote(search_params)))    
+
+        # scrape the api address from tpb
+        scrape_tpb = self.getURL(self.url)
+        js_url = re.findall('<script.*?src="(?P<url>.*\.js)".*?>',scrape_tpb)[0]
+        scrape_js = self.getURL(js_url)
+        self.api_server = re.findall("var server='(?P<server>.*?)'", scrape_js)[0]
+        # scrape trackers from api
+        trackers = re.findall("&tr='.*?'(?P<tracker>.*?)\'\)", scrape_js)
+        self.trackers = "&tr=".join(trackers)
+        
+        searchURL = self.api_server + "/q.php?q=" + urllib.quote(search_params)
         logger.log(u"Search string: " + searchURL, logger.DEBUG)
                     
         data = self.getURL(searchURL)
         if not data:
             return []
 
-        re_title_url = self.proxy._buildRE(self.re_title_url)
+        # convert the raw data to a list of dicts
+        data = data[1:len(data)-2].split('},{')
+        torrents = []
+        for thing in data:
+            match = {}
+            for line in thing.split('","'):
+                line = line.replace('"','')
+                match[line.split(":")[0]] = line.split(":")[1]
+            torrents.append(match)
+
+        if torrents[0]["name"] == "No results returned":
+            return []
         
-        #Extracting torrent information from searchURL                   
-        match = re.compile(re_title_url, re.DOTALL ).finditer(urllib.unquote(data))
-        for torrent in match:
-            #Accept Torrent only from Good People
-            if sickbeard.THEPIRATEBAY_TRUSTED and re.search('(VIP|Trusted|Helpers)',torrent.group(0))== None:
+        for torrent in torrents:
+            if torrent["seeders"] == "0":
+                continue
+
+            if sickbeard.THEPIRATEBAY_TRUSTED and not torrent["status"] in self.trusted:
                 logger.log(u"ThePirateBay Provider found result "+torrent.group('title')+" but that doesn't seem like a trusted result so I'm ignoring it",logger.DEBUG)
                 continue
-            
+
+            magnet_link = "magnet:?xt=urn:btih:" + torrent["info_hash"] + "&dn=" + torrent["name"] + "&tr=" + self.trackers
+
             #Do not know why but Sick Beard skip release with a '_' in name
-            item = (torrent.group('title').replace('_','.'),torrent.group('url'))
+            item = (torrent["name"].replace('_','.'),magnet_link)
+
             results.append(item)
         return results
 
